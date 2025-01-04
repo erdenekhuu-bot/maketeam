@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProfileResource\Pages;
-use App\Filament\Resources\ProfileResource\RelationManagers;
-use App\Models\Profile;
+use App\Filament\Resources\ExperienceResource\Pages;
+use App\Filament\Resources\ExperienceResource\RelationManagers;
+use App\Models\Experience;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProfileResource extends Resource
+class ExperienceResource extends Resource
 {
-    protected static ?string $model = Profile::class;
+    protected static ?string $model = Experience::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-o-hand-thumb-up';
 
     protected static ?string $navigationGroup = 'User';
 
@@ -25,41 +25,30 @@ class ProfileResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
+                Forms\Components\Select::make('profile_id')
                     ->options(
                         \App\Models\User::pluck('name', 'id')->toArray()
                     )
                     ->columnSpan('full')
                     ->required(),
-                Forms\Components\TextInput::make('fullname')
-                    ->label('Нэр')
+                Forms\Components\TextInput::make('company')
+                    ->label('Компанид ажилласан туршлага')
                     ->columnSpan('full')
                     ->required(),
-
-                Forms\Components\FileUpload::make('profile')
-                    ->label('Профайл зураг')
-                    ->avatar()
+                Forms\Components\TextInput::make('role')
+                    ->label('Үүрэг')
                     ->columnSpan('full')
                     ->required(),
-
-                Forms\Components\Textarea::make('about')
-                    ->label('Миний тухай')
-                    ->columnSpan('full')
-                    ->rows(10)
-                    ->required(),
-
-                Forms\Components\TextInput::make('linkedin')
-                    ->label('LinkedIn')
+                Forms\Components\Datepicker::make('started')
+                    ->label('Эхэлсэн хугацаа')
                     ->columnSpan('full')
                     ->required(),
-
-                Forms\Components\TextInput::make('twitter')
-                    ->label('Twitter')
+                Forms\Components\Datepicker::make('ended')
+                    ->label('Дууссан хугацаа')
                     ->columnSpan('full')
                     ->required(),
-
-                Forms\Components\TextInput::make('facebook')
-                    ->label('Facebook')
+                Forms\Components\Checkbox::make('is_current')
+                    ->label('Одоо ажиллаж байгаа эсэх')
                     ->columnSpan('full')
                     ->required(),
             ]);
@@ -94,9 +83,9 @@ class ProfileResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProfiles::route('/'),
-            'create' => Pages\CreateProfile::route('/create'),
-            'edit' => Pages\EditProfile::route('/{record}/edit'),
+            'index' => Pages\ListExperiences::route('/'),
+            'create' => Pages\CreateExperience::route('/create'),
+            'edit' => Pages\EditExperience::route('/{record}/edit'),
         ];
     }
 }

@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->mediumText('fullname')->nullable();
-            $table->mediumText('profile')->nullable();
+            $table->mediumText('name')->nullable();
+            $table->mediumText('web')->nullable();
+            $table->enum('city', ['Jakarta', 'Bandung', 'Surabaya', 'Yogyakarta', 'Semarang', 'Malang'])->default('Jakarta');
+            $table->mediumText('logo')->nullable();
+            $table->mediumText('cover')->nullable();
+            $table->mediumText('gallery')->nullable();
             $table->mediumText('about')->nullable();
+            $table->mediumText('description')->nullable();
             $table->mediumText('linkedin')->nullable();
             $table->mediumText('twitter')->nullable();
             $table->mediumText('facebook')->nullable();
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('companies');
     }
 };

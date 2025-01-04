@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('emails', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
+            $table->enum('subscribe', ['daily', 'weekly-startup', 'weekly-enterprise', 'weekly-event'])->default('daily');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('emails');
     }
 };

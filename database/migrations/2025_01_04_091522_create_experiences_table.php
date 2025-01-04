@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('profile_id')->constrained()->onDelete('cascade');
+            $table->mediumText('company')->nullable();
+            $table->mediumText('role')->nullable();
+            $table->date('started')->nullable();
+            $table->date('ended')->nullable();
+            $table->boolean('is_current')->default(false);
             $table->timestamps();
         });
     }
