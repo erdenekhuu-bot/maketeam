@@ -10,7 +10,37 @@
     </head>
     <body>
         <div id="app">
-            <Layout/>
+            <Layout>
+                <template v-slot:header>
+                    <v-row class="bg-white">
+                        <v-col class="px-16">
+                            <section class="flex justify-between items-center">
+                                <p class="font-black text-2xl text-[#020B75]">startupnews</p>
+                                <div class="flex items-center">
+                                    <img src="/asset/search.svg" alt="error">
+                                    <img class="mx-4" src="/asset/moon.svg" alt="error">
+                                </div>
+                            </section>
+                            <section class="flex justify-between items-center mt-3 text-[#020B75] font-bold hover:cursor-pointer">
+                                <p>Мэдээ</p>
+                                <p>Стартапууд</p>
+                                <p>Монголын стартап экосистемийн зураглал</p>
+                                <p>Холбогдох</p>
+                                <div class="flex items-center">
+                                    <img src="/asset/user.svg" alt="">
+                                    <p class="px-2 text-[14px] font-bold">Нэвтрэх</p>
+                                </div>
+                            </section>
+                        </v-col>
+                    </v-row>
+                </template>
+
+                <router-view></router-view>
+
+                <template v-slot:footer>
+                    <p>&copy; 2022 My Website</p>
+                </template>
+            </Layout>
         </div>
     </body>
 </html>
