@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1>Home Page</h1>
-    </div>
+    <v-container class="flex justify-center">
+        <img src="/asset/banner.svg" alt="">
+    </v-container>
 </template>
 
 <script>

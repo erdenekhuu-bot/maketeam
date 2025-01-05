@@ -1,12 +1,12 @@
 <template>
     <div class="layout">
-        <header>
+        <header class="bg-white">
             <slot name="header"></slot>
         </header>
-        <main>
+        <main class="bg-[#F5F5F5]">
             <router-view></router-view>
         </main>
-        <footer>
+        <footer class="bg-black">
             <slot name="footer"></slot>
         </footer>
     </div>
