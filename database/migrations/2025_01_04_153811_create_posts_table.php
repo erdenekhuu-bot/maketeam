@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('title')->nullable();
-            $table->enum('category', ['news', 'article', 'conversation', 'tutorial', 'review', 'interview', 'event', 'job'])->default('news');
-            $table->longText('content')->nullable();
+            $table->string('title');
+            $table->text('description');
+            $table->string('status')->default('draft');
             $table->timestamps();
         });
     }

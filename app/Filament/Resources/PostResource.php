@@ -55,13 +55,20 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+               Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+               Tables\Columns\TextColumn::make('category')
+                    ->searchable(),
+               Tables\Columns\TextColumn::make('content')
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
