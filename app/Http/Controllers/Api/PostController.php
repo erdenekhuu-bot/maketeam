@@ -11,12 +11,42 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(20);
+        $posts = Post::paginate(10);
         return PostResource::collection($posts);
     }
 
     public function show(Post $post)
     {
         return new PostResource($post);
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'content' => 'required|string',
+        ]);
+
+        $post = Post::create($validated);
+        return new PostResource($post);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $validated = $request->validate([
+            'title' => 'sometimes|string|max:255',
+            'category' => 'sometimes|string',
+            'content' => 'sometimes|string',
+        ]);
+
+        $post->update($validated);
+        return new PostResource($post);
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return response()->json(['message' => 'Post deleted successfully']);
     }
 }
