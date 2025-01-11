@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->mediumText('cover');
             $table->string('title');
             $table->text('description');
             $table->string('status')->default('draft');
