@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(50);
+        $posts = Post::paginate(20);
         return PostResource::collection($posts);
     }
 
@@ -19,4 +19,4 @@ class PostController extends Controller
     {
         return new PostResource($post);
     }
-} 
+}
