@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->mediumText('cover');
             $table->string('title');
-            $table->text('description');
-            $table->string('status')->default('draft');
+            $table->enum('category', ['news','article','conversation','tutorial','review','interview','event','job'])->default('news');
+            $table->text('content');
             $table->timestamps();
         });
     }

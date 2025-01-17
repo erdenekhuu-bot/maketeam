@@ -25,7 +25,10 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                
+                Forms\Components\FileUpload::make('cover')
+                    ->label('Cover')
+                    ->columnSpan('full')
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->label('Title')
                     ->columnSpan('full')
@@ -55,6 +58,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+               Tables\Columns\ImageColumn::make('cover'),
                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                Tables\Columns\TextColumn::make('category')
