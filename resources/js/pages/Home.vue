@@ -5,7 +5,7 @@
     <v-container>
         <v-row justify="center">
            <v-col>
-                <div class="my-2" v-for="item in homesection" :key="item.id">
+                <v-sheet class="my-2" v-for="item in homesection" :key="item.id">
                     <v-img 
                         :lazy-src="'/storage/' + item.cover"
                         :src="'/storage/' + item.cover"
@@ -13,37 +13,47 @@
                     />
                     <p class="my-1 font-extrabold text-[#020B75]">{{ item.category }}</p>
                     <p class="font-bold">{{ item.title }}</p>
-                </div>
+                </v-sheet>
             </v-col>
             <v-col>
-                <v-img 
+                <v-sheet>
+                    <v-img 
                     :lazy-src="'/storage/' + centersection.cover"
                     :src="'/storage/' + centersection.cover"
                     alt="error"
                 />
                 <p class="my-1 font-extrabold text-[#020B75]">{{ centersection.category }}</p>
                 <p class="font-bold text-2xl">{{ centersection.title }}</p>
+                </v-sheet>
             </v-col>
             <v-col>
-                <p class="font-black text-[#020B75] text-3xl">ИХ УНШСАН</p>
-                <div v-for="item in data" :key="item.id">
-                    <p class="grid grid-cols-2 my-2">
-                        <img class="col-span-1" src="/asset/Vector7.png" alt="">
-                        <p class="col-span-2">
-                            <span class="font-black text-2xl text-[#020B75]">{{ item.id }}</span>
-                            <span class="font-bold text-[#020B75] px-2">{{ item.category }}</span>
-                            <p class="font-bold">{{ item.title }}</p>
+                <v-sheet>
+                    <p class="font-black text-[#020B75] text-3xl">ИХ УНШСАН</p>
+                    <div v-for="item in data" :key="item.id">
+                        <p class="grid grid-cols-2 my-2">
+                            
+                            <p class="col-span-2">
+                                <div class="flex items-center">
+                                    <img class="col-span-1" src="/asset/Vector7.png" alt="">
+                                    <span class="font-black text-2xl text-[#020B75] mx-1">{{ item.id }}</span>
+                                    <span class="font-bold text-[#020B75] px-2">{{ item.category }}</span>
+                                </div>
+                                <p class="font-bold">{{ item.title }}</p>
+                            </p>
                         </p>
-                    </p>
-                </div>
+                    </div>
+                </v-sheet>
             </v-col>
         </v-row>
-
+    </v-container>
+    <v-container>
+        <Cards/>
     </v-container>
 </template>
 
 <script>
 import axios from 'axios';
+import Cards from '../components/Cards.vue';
 export default {
     name: "HomePage",
     data() {
@@ -52,6 +62,9 @@ export default {
             centersection: [],
             data: []
         };
+    },
+    components:{
+        Cards
     },
     methods:{
         async fetching(){

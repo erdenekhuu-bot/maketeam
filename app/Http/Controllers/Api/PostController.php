@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = DB::table('posts')->orderBy('title','asc')->paginate(10);
+        $posts = DB::table('posts')->where('category','news')->get();
         return PostResource::collection($posts);
     }
 
