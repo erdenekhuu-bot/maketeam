@@ -1,13 +1,18 @@
 <template>
     <v-container>
             <v-row>
-                <v-column v-for="item in data" key="item.id">
-                     <v-img 
-                        :lazy-src="'/storage/' + item.cover"
-                        :src="'/storage/' + item.cover"
-                        alt="error"
-                    />
-                </v-column>
+                <v-col v-for="item in data" key="item.id">
+                    <v-sheet>
+                        <v-img 
+                            :lazy-src="'/storage/' + item.cover"
+                            :src="'/storage/' + item.cover"
+                            alt="error"
+                            max-height="150"
+                            max-width="250"
+                        />
+                        <p>{{ item.title }}</p>
+                    </v-sheet>
+                </v-col>
             </v-row>
     </v-container>
 </template>
